@@ -13,6 +13,7 @@ export class CategoriasService {
   }
 
   insert(categoria: any) {
+    return this .categoriasRef.push(categoria);
   }
 
   update(categoria: any, key: string) {
@@ -38,13 +39,13 @@ export class CategoriasService {
     //     subscribe.unsubscribe();
 
     //     if (produtos.length == 0) {
-    //       return this.categoriasRef.remove(key);
+          return this.categoriasRef.remove(key);
     //     } else {
     //       reject('Não é possível excluir a categoria pois ela tem produtos associados.')
     //     }
     //   });
     // });
-    this .categoriasRef.remove(key);
+    // this .categoriasRef.remove(key);
 
   }
 
