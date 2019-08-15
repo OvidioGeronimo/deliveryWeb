@@ -21,7 +21,7 @@ export class ListaCategoriasComponent implements OnInit {
   remover(key: string) {
     this .categoriasService.remove(key)
     .catch((mensagem: string) => {
-      this.toastr.error(mensagem);
+      this .toastr.error(mensagem);
 
     });
   }
