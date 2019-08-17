@@ -54,12 +54,12 @@ export class FormCategoriasComponent implements OnInit {
     onSubmit(){
       if(this .formCategoria.valid) {
         if(this .key) {
-        this.categoriasService.update(this.formCategoria.value, this.key);
+        this .categoriasService.update(this .formCategoria.value, this .key);
         } else {
           this .categoriasService.insert(this .formCategoria.value);
         }
-         this.router.navigate(['categorias']);
-        this.toastr.success('Categoria salva com sucesso!!!');
+         this .router.navigate(['categorias']);
+        this .toastr.success('Categoria salva com sucesso!!!');
       }
     }
 

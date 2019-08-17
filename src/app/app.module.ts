@@ -17,6 +17,8 @@ import { ListaCategoriasComponent } from './categorias/lista-categorias/lista-ca
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule} from '@angular/fire/database';
+import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos.component';
+import { FormProdutosComponent } from './produtos/form-produtos/form-produtos.component';
 @ NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import { AngularFireDatabaseModule} from '@angular/fire/database';
     HomeLayoutComponent,
     LoginLayoutComponent,
     FormCategoriasComponent,
-    ListaCategoriasComponent
+    ListaCategoriasComponent,
+    ListaProdutosComponent,
+    FormProdutosComponent
   ],
   imports: [
     BrowserModule,
