@@ -40,7 +40,7 @@ export class FormProdutosComponent implements OnInit {
 
       get nome(){ return this .formProduto.get('nome'); }
       get descricao() { return this .formProduto.get('descricao'); }
-      get preco() { return this .formProduto.get('preço'); }
+      get preco() { return this .formProduto.get('preco'); }
 
 
 
@@ -49,6 +49,7 @@ export class FormProdutosComponent implements OnInit {
       this .formProduto = this .formBuilder.group({
         nome: ['', Validators.required],
         descricao: [''],
+        preco: ['']
       });
   }
 
