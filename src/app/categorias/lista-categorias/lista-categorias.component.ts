@@ -20,6 +20,11 @@ export class ListaCategoriasComponent implements OnInit {
 
   remover(key: string) {
     this .categoriasService.remove(key)
+    .then((mensagem) => {
+      this .toastr.success('Excluido com sucesso');
+
+    })
+
     .catch((mensagem: string) => {
       this .toastr.error(mensagem);
 

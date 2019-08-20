@@ -1,3 +1,5 @@
+import { CategoriasService } from './../../categorias/shared/categorias.service';
+import { Observable } from 'rxjs';
 import { ProdutosService } from '../shared/produtos.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,25 +17,43 @@ import { ToastrService } from 'ngx-toastr';
 export class FormProdutosComponent implements OnInit {
   formProduto: FormGroup;
   key:string;
+  categorias: Observable < any[]>;
+
+  private file: File = null;
+  imgUrl: string = ' ';
+  filePath: string = ' ';
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private produtosService: ProdutosService,
               private toastr: ToastrService,
-              private router: Router
+              private router: Router,
+              private categoriasService: CategoriasService
 
   ) { }
 
   ngOnInit() {
     this .criarFormulario();
+    this .categorias = this .categoriasService.getAll();
+
     this .key = this .route.snapshot.paramMap.get('key');
         if(this .key){
 
           const produtoSubscribe = this .produtosService.getByKey(this .key)
           .subscribe((produtos:any) => {
 
+
             produtoSubscribe.unsubscribe();
-            this .formProduto.setValue({nome: produtos.nome, descricao: produtos.descricao, preco: produtos.preco});
+            this .formProduto.setValue({
+              nome: produtos.nome,
+              descricao: produtos.descricao,
+              preco: produtos.preco,
+              categoriaKey: produtos.categoriaKey,
+              categoriaNome: produtos.categoriaNome,
+             });
+
+             this .imgUrl = produtos.img || '';
+             this .filePath = produtos.filePath || '';
           });
         }
       }
@@ -41,6 +61,8 @@ export class FormProdutosComponent implements OnInit {
       get nome(){ return this .formProduto.get('nome'); }
       get descricao() { return this .formProduto.get('descricao'); }
       get preco() { return this .formProduto.get('preco'); }
+      get categoriaKey() { return this .formProduto.get('categoriaKey'); }
+      get categoriaNome() { return this .formProduto.get('categoriaNome'); }
 
 
 
@@ -49,8 +71,38 @@ export class FormProdutosComponent implements OnInit {
       this .formProduto = this .formBuilder.group({
         nome: ['', Validators.required],
         descricao: [''],
-        preco: ['']
+        preco: ['', Validators.required],
+        categoriaKey: ['', Validators.required],
+        categoriaNome: [''],
+        img:['']
+
       });
+      this .file = null;
+      this .imgUrl = '';
+      this .filePath = '';
+  }
+
+  setCategoriaNome(categorias: any) {
+    if (categorias && this .formProduto.value.categoriaKey){
+        const categoriaNome = categorias[0].text;
+        this .categoriaNome.setValue(categoriaNome);
+    } else {
+      this .categoriaNome.setValue('');
+    }
+    }
+
+     upload(event: any) {
+      if (event.target.files.length) {
+        this .file = event.target.files[0];
+      } else {
+        this .file = null;
+     }
+  }
+
+  removeImg(){
+    this .produtosService.removeImg(this .filePath, this .key);
+    this .imgUrl = '';
+    this .filePath = '';
   }
 
   onSubmit(){

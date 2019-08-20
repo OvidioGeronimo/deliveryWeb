@@ -4,7 +4,7 @@ import { FormProdutosComponent } from './form-produtos.component';
 
 describe('FormProdutosComponent', () => {
   let component: FormProdutosComponent;
-  let fixture: ComponentFixture<FormProdutosComponent>;
+  let fixture: ComponentFixture< FormProdutosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

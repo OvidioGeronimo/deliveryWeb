@@ -4,7 +4,7 @@ import { FormCategoriasComponent } from './form-categorias.component';
 
 describe('FormCategoriasComponent', () => {
   let component: FormCategoriasComponent;
-  let fixture: ComponentFixture<FormCategoriasComponent>;
+  let fixture: ComponentFixture< FormCategoriasComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

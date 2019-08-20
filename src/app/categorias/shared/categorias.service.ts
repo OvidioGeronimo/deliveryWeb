@@ -48,7 +48,7 @@ export class CategoriasService {
     //     subscribe.unsubscribe();
 
     //     if (produtos.length == 0) {
-          return this.categoriasRef.remove(key);
+          return this .categoriasRef.remove(key);
     //     } else {
     //       reject('Não é possível excluir a categoria pois ela tem produtos associados.')
     //     }

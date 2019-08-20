@@ -4,7 +4,7 @@ import { ListaProdutosComponent } from './lista-produtos.component';
 
 describe('ListaProdutosComponent', () => {
   let component: ListaProdutosComponent;
-  let fixture: ComponentFixture<ListaProdutosComponent>;
+  let fixture: ComponentFixture< ListaProdutosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

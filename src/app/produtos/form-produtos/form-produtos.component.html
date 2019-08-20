@@ -1,4 +1,4 @@
-<h3>Novo Produto</h3>
+<h3 class="text-center mt-2"><u>Novo Produto</u></h3>
 <hr>
 <form [formGroup]="formProduto" (ngSubmit)="onSubmit()">
 
@@ -18,12 +18,39 @@
   </div>
 
   <div class="form-group">
+      <label for="categoriaKey">Categoria</label>
+      <select id="categoriaKey" formControlName="categoriaKey" (change)="setCategoriaNome($event.target.selectdOptions">
+        <option value="">- Escolher -</option>
+        <option *ngFor="let categoria of categorias | async" [value]="categoria.key">{{ categoria.nome}}</option>
+      </select>
+      <input type="text" class="form-control" id="descricao" placeholder="Descrição da categoria" formControlName="descricao">
+    </div>
+    <div *ngIf="categoriaKey.invalid && (categoriaKey.dirty || categoriaKey.touched)" class="alert alert-danger">
+      <div *ngIf="categoriaKey.errors?.required">
+        A categoria é obrigatória.
+      </div>
+    </div>
+
+  <div class="form-group">
     <label for="preco">Preço</label>
-    <input type="text" class="form-control" id="preco" placeholder="Preço do produto" formControlName="preco">
+    <input type="number" step="1" min="0.1" class="form-control" id="preco" placeholder="Preço do produto" formControlName="preco">
   </div>
 
+    <!-- O controle abaixo é para fazer upload do arquivo -->
+    <div class="form-group" *ngIf="imgUrl == ''">
+        <label class="form-control-label">Foto/Imagem</label>
+        <input type="file" class="form-control" accept="image/png,image/jpeg" (change)="upload($event)" formControlName="img" />
+      </div>
 
-  <button type="submit" class="btn btn-primary">Salvar</button>
+      <!-- A div abaixo é para exibir a imagem do produto -->
+      <div class="form-group" *ngIf="imgUrl == ''">
+        <img [src]="imgUrl" class="img-thumbnail d-block" style="max-width: 100px;">
+        <button class="btn btn-danger mt-2" type="button" (click)="removerImg()">
+          Remover imagem
+        </button>
+      </div>
+
+  <button type="submit" class="btn btn-success">Salvar</button>
   <a class="btn btn-secondary ml-2" [routerLink]="['/produtos']">Voltar</a>
 
 </form>
