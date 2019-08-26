@@ -19,11 +19,11 @@
 
   <div class="form-group">
       <label for="categoriaKey">Categoria</label>
-      <select id="categoriaKey" formControlName="categoriaKey" (change)="setCategoriaNome($event.target.selectdOptions">
+      <select id="categoriaKey" formControlName="categoriaKey" (change)="setCategoriaNome($event.target.selectedOptions)">
         <option value="">- Escolher -</option>
         <option *ngFor="let categoria of categorias | async" [value]="categoria.key">{{ categoria.nome}}</option>
       </select>
-      <input type="text" class="form-control" id="descricao" placeholder="Descrição da categoria" formControlName="descricao">
+
     </div>
     <div *ngIf="categoriaKey.invalid && (categoriaKey.dirty || categoriaKey.touched)" class="alert alert-danger">
       <div *ngIf="categoriaKey.errors?.required">
@@ -35,6 +35,11 @@
     <label for="preco">Preço</label>
     <input type="number" step="1" min="0.1" class="form-control" id="preco" placeholder="Preço do produto" formControlName="preco">
   </div>
+  <div *ngIf="preco.invalid && (preco.dirty || preco.touched)" class="alert alert-danger">
+    <div *ngIf="preco.errors?.required">
+      O preco é obrigatório.
+    </div>
+  </div>
 
     <!-- O controle abaixo é para fazer upload do arquivo -->
     <div class="form-group" *ngIf="imgUrl == ''">
@@ -43,7 +48,7 @@
       </div>
 
       <!-- A div abaixo é para exibir a imagem do produto -->
-      <div class="form-group" *ngIf="imgUrl == ''">
+      <div class="form-group" *ngIf="imgUrl != ''">
         <img [src]="imgUrl" class="img-thumbnail d-block" style="max-width: 100px;">
         <button class="btn btn-danger mt-2" type="button" (click)="removerImg()">
           Remover imagem

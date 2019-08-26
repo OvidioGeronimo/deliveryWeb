@@ -18,11 +18,11 @@ ngOnInit() {
 this .produtos = this .produtosService.getAll();
 }
 
-remover(key: string) {
-  this .produtosService.remove(key)
-  .catch((mensagem: string) => {
-    this .toastr.error(mensagem);
-
-  });
+remover(key: string, filePath: string) {
+  // this .produtosService.remove(key)
+  // .catch((mensagem: string) => {
+  //   this .toastr.error(mensagem);
+  this .produtosService.remove(key, filePath);
+  // });
 }
 }

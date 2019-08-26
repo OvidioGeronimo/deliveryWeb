@@ -3,7 +3,7 @@ export const firebaseconfig = {
   authDomain: "delivery-9a001.firebaseapp.com",
   databaseURL: "https://delivery-9a001.firebaseio.com",
   projectId: "delivery-9a001",
-  storageBucket: "",
+  storageBucket: "delivery-9a001.appspot.com",
   messagingSenderId: "501717088162",
   appId: "1:501717088162:web:3f85b7cb0d8b69b9"
 }

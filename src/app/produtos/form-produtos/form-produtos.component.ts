@@ -105,15 +105,27 @@ export class FormProdutosComponent implements OnInit {
     this .filePath = '';
   }
 
-  onSubmit(){
-    if(this .formProduto.valid) {
-      if(this .key) {
-      this .produtosService.update(this .formProduto.value, this .key);
+  onSubmit() {
+    if (this.formProduto.valid) {
+      let result: Promise<{}>;
+
+      if (this.key) {
+        result = this.produtosService.update(this.formProduto.value, this.key);
       } else {
-        this .produtosService.insert(this .formProduto.value);
+        result = this.produtosService.insert(this.formProduto.value);
       }
-       this .router.navigate(['produtos']);
-      this .toastr.success('Produto salvo com sucesso!!!');
+
+      if (this.file) {
+        result.then( (key: string) => {
+          this.produtosService.uploadImg(key, this.file);
+          this.criarFormulario();
+        });
+      } else {
+        this.criarFormulario();
+      }
+
+      this.router.navigate(['produtos']);
+      this.toastr.success('Produtos salvo com sucesso!!!');
     }
   }
 

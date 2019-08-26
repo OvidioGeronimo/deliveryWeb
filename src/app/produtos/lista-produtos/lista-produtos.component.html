@@ -1,4 +1,4 @@
-<h3 class="text-center mt-2"><u>Novo Produto</u></h3>
+<h3 class="text-center mt-2"><u>Produtos</u></h3>
 <hr>
 <div class="card ">
   <div class="card-header text-right">
@@ -9,25 +9,31 @@
       <thead>
         <tr>
           <!-- <th scope="col">#</th> -->
+          <th scope="col">#</th>
           <th scope="col">Nome</th>
           <th scope="col">Descricao</th>
           <th scope="col">Preço</th>
+          <th scope="col">Categoria</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let produto of produtos | async" >
           <!-- <th scope="row">{{produto.key}}</th> -->
+          <td>
+            <img [src]="produto.img" class="img-thumbnail" style="max-width: 50px;" [hidden]="!produto.img" />
+          </td>
           <td>{{ produto.nome }}</td>
           <td>{{ produto.descricao }}</td>
-          <td>{{ produto.preco | currency: 'BRL':true }}</td>
+          <td>{{ produto.preco | currency: 'BRL'}}</td>
+          <td>{{ produto.categoriaNome }}</td>
           <td class="edit">
             <a class="btn btn-warning text-white" role="button" [routerLink]="['/produtos/editar', produto.key]"><i class="far fa-edit"> Editar</i></a>
           </td>
           <td class="delete">
             <!-- Botão para acionar modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
-    Abrir modal de demonstração
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExemplo">
+    Deletar
   </button>
 
   <!-- Modal -->
@@ -35,7 +41,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Título do modal</h5>
+          <h5 class="modal-title" id="exampleModalLabel">excluir</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -45,7 +51,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                  <button class="btn btn-danger" (click)="remover(produto.key)"><i class="far fa-trash-alt"> Deletar</i></button>
+                  <button class="btn btn-danger" (click)="remover(produto.key)"><i class="far fa-trash-alt" data-dismiss="modal"> Deletar</i></button>
         </div>
       </div>
     </div>
