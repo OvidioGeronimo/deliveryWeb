@@ -19,7 +19,7 @@
 
   <div class="form-group">
       <label for="categoriaKey">Categoria</label>
-      <select id="categoriaKey" formControlName="categoriaKey" (change)="setCategoriaNome($event.target.selectedOptions)">
+      <select class="form-control" id="categoriaKey" formControlName="categoriaKey" (change)="setCategoriaNome($event.target.selectedOptions)">
         <option value="">- Escolher -</option>
         <option *ngFor="let categoria of categorias | async" [value]="categoria.key">{{ categoria.nome}}</option>
       </select>

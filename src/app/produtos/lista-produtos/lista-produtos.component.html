@@ -32,10 +32,8 @@
           </td>
           <td class="delete">
             <!-- Botão para acionar modal -->
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExemplo">
-    Deletar
-  </button>
-
+              <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalExemplo">Deletar</button> -->
+              <button class="btn btn-danger" (click)="remover(produto.key, produto.filePath)"><i class="far fa-trash-alt"> Deletar</i></button>
   <!-- Modal -->
   <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
