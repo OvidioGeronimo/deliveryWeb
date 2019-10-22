@@ -1,5 +1,9 @@
+
+
 <h3 class="text-center mt-2"><u>Categorias</u></h3>
 <hr>
+
+
 <form [formGroup]="formCategoria" (ngSubmit)="onSubmit()">
 
   <div class="form-group">
@@ -19,6 +23,8 @@
 
 
   <button type="submit" class="btn btn-success">Salvar</button>
+   <!-- esse botao tipo subimit referece ao form group onsubit -->
+
   <a class="btn btn-secondary ml-2" [routerLink]="['/categorias']">Voltar</a>
 
 </form>

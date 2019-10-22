@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./form-categorias.component.scss']
 })
 export class FormCategoriasComponent implements OnInit {
+  //que esta declarado no html//
   formCategoria: FormGroup;
   key:string;
 
@@ -22,16 +23,20 @@ export class FormCategoriasComponent implements OnInit {
               ) { }
 
 
-
+//criar um formulario vazio se nao tiver a key//
     ngOnInit() {
     this .criarFormulario();
+    //snapshot.paramMap pega a key la de cima da routa
     this .key = this .route.snapshot.paramMap.get('key');
         if(this .key){
 
           const categoriaSubscribe = this .categoriasService.getByKey(this .key)
+         //escuta//
           .subscribe((categorias:any) => {
-
+            //para de escutar//
             categoriaSubscribe.unsubscribe();
+
+            //setvaleu para trazer as informações do banco
             this .formCategoria.setValue({nome: categorias.nome, descricao: categorias.descricao});
           });
         }
@@ -43,23 +48,26 @@ export class FormCategoriasComponent implements OnInit {
     get descricao() { return this .formCategoria.get('descricao'); }
 
 
+//para addicionar//
     criarFormulario() {
       this .key = null;
+      //grupo de componentes//
       this .formCategoria = this .formBuilder.group({
-        nome: ['', Validators.required],
+        nome: ['', Validators.required],//para nao deixar passar em branco
         descricao: [''],
       });
   }
 
     onSubmit(){
-      if(this .formCategoria.valid) {
-        if(this .key) {
-        this .categoriasService.update(this .formCategoria.value, this .key);
+                         //valid referece ao validators do campo
+      if(this.formCategoria.valid) {
+        if(this.key) {
+        this.categoriasService.update(this.formCategoria.value,this.key);
         } else {
-          this .categoriasService.insert(this .formCategoria.value);
+          this.categoriasService.insert(this.formCategoria.value);
         }
-         this .router.navigate(['categorias']);
-        this .toastr.success('Categoria salva com sucesso!!!');
+         this.router.navigate(['categorias']);
+        this.toastr.success('Categoria salva com sucesso!!!');
       }
     }
 

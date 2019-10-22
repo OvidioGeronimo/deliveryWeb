@@ -9,12 +9,14 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./lista-categorias.component.scss']
 })
 export class ListaCategoriasComponent implements OnInit {
+  //observable é variavel que le um array
   categorias: Observable< any[]>;
 
   constructor(private categoriasService: CategoriasService,
               private toastr:            ToastrService) { }
 
   ngOnInit() {
+    //vai o lugar que vai passar primeiro//
     this .categorias = this .categoriasService.getAll();
   }
 

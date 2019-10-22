@@ -16,8 +16,11 @@ const routes: Routes = [
   {
     path: '',
     component: HomeLayoutComponent,
+
+    //authguard para proteger as rotas so navega se tiver logado//
     canActivate: [AuthGuard],
     children: [
+      // aqui voce define para onde voce vai navegar//
       { path: 'dashboard', component: DashboardComponent },
       { path: 'categorias', component: ListaCategoriasComponent },
       { path: 'categorias/nova', component: FormCategoriasComponent },
@@ -27,6 +30,7 @@ const routes: Routes = [
       { path: 'produtos/novo', component: FormProdutosComponent },
       { path: 'produtos/editar/:key', component: FormProdutosComponent },
 
+      //rota vazia direciona para dashboard//patmatch é parta da raiz
       { path: '', redirectTo:'/dashboard', pathMatch: 'full' }
 
     ]
@@ -35,8 +39,10 @@ const routes: Routes = [
     path: '',
     component: LoginLayoutComponent,
     children: [
+
+      //aqui as rotas nao precisa estar logado//
       { path: 'login', component: LoginComponent },
-      { path: 'criar-conta', component:  CriarContaComponent},
+      { path: 'criar-conta', component:  CriarContaComponent},s
       { path: 'esqueci-senha', component:  EsqueciSenhaComponent}
     ]
   },

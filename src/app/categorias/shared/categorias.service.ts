@@ -11,7 +11,7 @@ export class CategoriasService {
   constructor(private db: AngularFireDatabase) {
     this .categoriasRef = this .db.list('categorias/');
   }
-
+  //nessa variavel categoria vem la do ts formCategoria.value
   insert(categoria: any) {
     return this .categoriasRef.push(categoria);
   }
@@ -32,7 +32,7 @@ export class CategoriasService {
   }
 
   getByKey(key: string) {
-      const path = 'categorias/'+key;
+      const path = 'categorias/'+key;//snapshot metodo de consulta e um cara so de um path
       return this .db.object(path).snapshotChanges().pipe(
         map(change =>{
           return ({ key: change.key, ...change.payload.val() });

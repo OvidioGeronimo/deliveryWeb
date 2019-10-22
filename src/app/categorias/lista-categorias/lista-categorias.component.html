@@ -16,6 +16,8 @@
         </tr>
       </thead>
       <tbody>
+        <!-- laço de repeticao categoria que recebe de categorias lembre-se async é para
+          atualizar tudo em real time database -->
         <tr *ngFor="let categoria of categorias | async" >
           <!-- <th scope="row">{{categoria.key}}</th> -->
           <td>{{ categoria.nome }}</td>

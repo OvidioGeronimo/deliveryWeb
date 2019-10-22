@@ -81,7 +81,7 @@ export class FormProdutosComponent implements OnInit {
       this .imgUrl = '';
       this .filePath = '';
   }
-
+//
   setCategoriaNome(categorias: any) {
     if (categorias && this .formProduto.value.categoriaKey){
         const categoriaNome = categorias[0].text;
