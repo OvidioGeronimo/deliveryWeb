@@ -29,6 +29,13 @@ export class CategoriasService {
   }
 
   getProdutosByCategoria(key: string) {
+    return this.db.list('produtos/', q => q.orderByChild('categoriaKey').equalTo(key))
+    .snapshotChanges()
+    .pipe(
+      map(changes => {
+        return changes.map(m => ({ key: m.key }))
+      })
+    )
   }
 
   getByKey(key: string) {

@@ -24,6 +24,8 @@ import { ListaProdutosComponent } from './produtos/lista-produtos/lista-produtos
 import { FormProdutosComponent } from './produtos/form-produtos/form-produtos.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+import { DetalhePedidoComponent } from './pedidos/detalhe-pedido/detalhe-pedido.component';
+import { ListaPedidosComponent } from './pedidos/lista-pedidos/lista-pedidos.component';
 
 @ NgModule({
   declarations: [
@@ -40,6 +42,10 @@ import { environment } from '../environments/environment';
     LoginComponent,
     EsqueciSenhaComponent,
     CriarContaComponent,
+    ListaPedidosComponent,
+    DetalhePedidoComponent
+
+
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,44 @@
+<h3>Pedidos</h3>
+<hr>
+<div class="card">  
+  <div class="card-body">
+    <table class="table grid">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th>Número</th>
+          <th>Data</th>
+          <th>Status</th>
+          <th>Cliente</th>
+          <th>Total</th>
+          <th class="text-center"></th>
+          <th class="text-center"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pedido of pedidos | async" >
+          <th scope="row">{{pedido.key}}</th>
+          <td>{{ pedido.numero }}</td>
+          <td>{{ pedido.data }}</td>
+          <td>{{ getStatusNome(pedido.status) }}</td>
+          <td>{{ pedido.usuarioNome }}</td>
+          <td>{{ pedido.total | currency:'BRL' }}</td>
+          <td class="edit">
+            <a class="btn btn-light" role="button" [routerLink]="['/pedidos/detalhe', pedido.key]"><i class="fas fa-info"></i></a>
+          </td>
+          <td class="edit">
+            <button type="button" class="btn btn-link" (click)="setStatusEmPreparacao(pedido)">
+              <i class="far fa-check-circle"></i> Confirmado
+            </button>
+            <button type="button" class="btn btn-link" (click)="setStatusSaiuParaEntrega(pedido)">
+              <i class="fas fa-motorcycle"></i> Saiu para entrega
+            </button>
+            <button type="button" class="btn btn-link" (click)="setStatusEntregue(pedido)">
+              <i class="fas fa-check-circle"></i> Entregue
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

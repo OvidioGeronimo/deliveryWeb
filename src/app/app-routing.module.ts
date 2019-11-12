@@ -11,6 +11,7 @@ import { LoginComponent } from './usuarios/login/login.component';
 import { CriarContaComponent } from './usuarios/criar-conta/criar-conta.component';
 import { EsqueciSenhaComponent } from './usuarios/esqueci-senha/esqueci-senha.component';
 import { AuthGuard } from './usuarios/shared/auth.guard';
+import { DetalhePedidoComponent } from './pedidos/detalhe-pedido/detalhe-pedido.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,11 @@ const routes: Routes = [
     children: [
       // aqui voce define para onde voce vai navegar//
       { path: 'dashboard', component: DashboardComponent },
+
+      { path: 'pedidos', component: DashboardComponent },
+      { path: 'pedidos/detalhe/:key', component: DetalhePedidoComponent },
+
+
       { path: 'categorias', component: ListaCategoriasComponent },
       { path: 'categorias/nova', component: FormCategoriasComponent },
       { path: 'categorias/editar/:key', component: FormCategoriasComponent },
@@ -42,7 +48,7 @@ const routes: Routes = [
 
       //aqui as rotas nao precisa estar logado//
       { path: 'login', component: LoginComponent },
-      { path: 'criar-conta', component:  CriarContaComponent},s
+      { path: 'criar-conta', component:  CriarContaComponent},
       { path: 'esqueci-senha', component:  EsqueciSenhaComponent}
     ]
   },

@@ -8,7 +8,7 @@
       <div class="col-md">
         <div class="card text-white bg-danger">
           <div class="card-body">
-            <h2 class="card-title">??<!-- {{ totalAguardandoConfirmacao | async }} --></h2>
+            <h2 class="card-title">{{ totalAguardandoConfirmacao | async }}</h2>
             <p class="card-text">Aguardando confirmação</p>
             <div class="icon">
               <i class="fas fa-shopping-bag"></i>
@@ -20,7 +20,7 @@
       <div class="col-md">
         <div class="card text-white bg-warning">
           <div class="card-body">
-            <h2 class="card-title">??<!-- {{ totalEmPreparacao | async }} --></h2>
+            <h2 class="card-title">{{ totalEmPreparacao | async }}</h2>
             <p class="card-text">Em preparação</p>
             <div class="icon">
               <i class="far fa-check-circle"></i>
@@ -32,7 +32,7 @@
       <div class="col-md">
         <div class="card text-white bg-primary">
           <div class="card-body">
-            <h2 class="card-title">??<!-- {{ totalSaiuParaEntrega | async }} --></h2>
+            <h2 class="card-title">{{ totalSaiuParaEntrega | async }}</h2>
             <p class="card-text">Saiu para entrega</p>
             <div class="icon">
               <i class="fas fa-motorcycle"></i>
@@ -44,7 +44,7 @@
       <div class="col-md">
         <div class="card text-white bg-success">
           <div class="card-body">
-            <h2 class="card-title">??<!-- {{ totalEntregue | async }} --></h2>
+            <h2 class="card-title">{{ totalEntregue | async }}</h2>
             <p class="card-text">Entregue</p>
             <div class="icon">
               <i class="fas fa-check-circle"></i>
@@ -57,4 +57,4 @@
   </div>
 </section>
 
-<!-- <app-lista-pedidos [dashboardMode]="true"></app-lista-pedidos> -->
+ <app-lista-pedidos [dashboardMode]="true"></app-lista-pedidos>

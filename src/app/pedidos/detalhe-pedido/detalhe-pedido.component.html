@@ -1,0 +1,41 @@
+<h3>Detalhes do pedido: {{pedido.numero}}</h3>
+<hr>
+
+<div class="card">
+  <div class="card-body">
+    <p class="card-text"><b>Data:</b> {{ pedido.data }}</p>
+    <p class="card-text"><b>Status:</b> {{ getStatusNome(pedido.status) }}</p>
+    <p class="card-text"><b>Cliente:</b> {{ pedido.usuarioNome }}</p>
+    <p class="card-text"><b>Entregar em:</b> {{ pedido.enderecoEntrega }}</p>
+    <p class="card-text"><b>Forma de pagamento:</b> {{ getFormaPagamentoNome(pedido.formaPagamento) }}</p>
+    <p class="card-text" *ngIf="pedido.formaPagamento == 1"><b>Troco para:</b> {{ pedido.trocoPara || 0 | currency:'BRL' }}</p>
+    <p class="card-text" *ngIf="pedido.formaPagamento == 2"><b>Cartão:</b> {{ pedido.tipoCartao }}</p>
+    <p class="card-text"><b>Total:</b> {{ pedido.total | currency:'BRL' }}</p>
+
+    <h2>Itens</h2>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Total</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produto of produtos | async">
+            <td>{{ produto.produtoNome }}</td>
+            <td>{{ produto.produtoDescricao }}</td>
+            <td>{{ produto.quantidade }}</td>
+            <td class="text-right">{{ produto.produtoPreco | currency:'BRL' }}</td>
+            <td class="text-right">{{ produto.total | currency:'BRL' }}</td>
+            <td>{{ produto.observacao }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
